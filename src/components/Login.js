@@ -17,9 +17,11 @@ function Login() {
         <div className="d-flex flex-column justify-content-center align-items-center " style={{ height: '100vh', backgroundColor: 'rebeccapurple' }}>
             <header className='p-3 m-3'>
                 <h1 className='m-0 text-light'>SMART AVAITION</h1>
-                <small className='text-light'>Get notified on your flights on every device</small>
+                <p className="lead text-light">
+                    Get notified on your flights on every device
+                </p>
             </header>
-            <div className='card p-2 col-10 col-sm-10 col-md-8 col-lg-6' style={{ backgroundColor: 'lavender' }}>
+            <div className='card p-2 col-10 col-sm-8 col-md-7 col-lg-5' style={{ backgroundColor: 'lavender' }}>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email address</label>

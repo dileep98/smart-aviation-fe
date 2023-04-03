@@ -13,8 +13,9 @@ function Signup() {
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
-            <div className='card p-2 col-8'>
+        <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh', backgroundColor: 'rebeccapurple' }}>
+            <div className='card p-2 col-10 col-sm-8 col-md-7 col-lg-5' style={{ backgroundColor: 'lavender' }}>
+                <h1 className="display-6">Sign up</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email address</label>
