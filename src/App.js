@@ -12,7 +12,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
-    if(JSON.parse(localStorage.getItem('token')).hasOwnProperty('accessToken')){
+    if(JSON.parse(localStorage.getItem('token'))?.hasOwnProperty('accessToken')){
       setIsLoggedIn(true)
       navigate('/')
     }
