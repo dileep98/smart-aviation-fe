@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
+import axios from 'axios';
 
-function Login() {
-    const navigate = useNavigate();
+function Login({ onLogin }) {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [usernameOrEmail, setUsernameOrEmail] = useState('');
+    const [password, setPassword] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate('/home')
-    };
+        axios.post(`${API_URL}/auth/signin`, {
+            usernameOrEmail,
+            password
+        })
+            .then(res => {
+                if (res.status === 200 && res?.data.hasOwnProperty('accessToken')) {
+                    onLogin(res.data)
+                }
+            })
+            .catch(err => console.error(err))
+    }
 
     return (
         <div className="d-flex flex-column justify-content-center align-items-center " style={{ height: '100vh', backgroundColor: 'rebeccapurple' }}>
@@ -24,14 +33,14 @@ function Login() {
             <div className='card p-2 col-10 col-sm-8 col-md-7 col-lg-5' style={{ backgroundColor: 'lavender' }}>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email address</label>
+                        <label htmlFor="email" className="form-label">Email address or Username</label>
                         <input
-                            type="email"
+                            type="text"
                             className="form-control"
                             id="email"
-                            placeholder="Enter email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter email / username"
+                            value={usernameOrEmail}
+                            onChange={(e) => setUsernameOrEmail(e.target.value)}
                         />
                     </div>
 

@@ -1,3 +1,23 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.sidebar {
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-brand a ,.sidebar-nav a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar-nav a {
+  color: black;
+}
+
+.sidebar-nav a:hover {
+  background-color: #c2c2c2;
+  border-radius: 3px;
+}
