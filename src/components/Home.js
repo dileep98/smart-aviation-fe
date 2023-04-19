@@ -50,7 +50,7 @@ const Home = () => {
         const month = dateTime.getMonth() + 1;
         const day = dateTime.getDate();
         const hours = dateTime.getHours();
-        const minutes = (dateTime.getMinutes() < 10 ? '0' : '') + date.getMinutes()
+        const minutes = (dateTime.getMinutes() < 10 ? '0' : '') + dateTime.getMinutes()
 
         return `${month}/${day}/${year} ${hours}:${minutes}`;
     }
