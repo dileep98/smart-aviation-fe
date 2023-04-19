@@ -32,7 +32,7 @@ const Home = () => {
 
         axios.get(`${API_URL}/flights?origin=${origin}&destination=${destination}&departureDate=${departureDate}`, {
             headers: {
-                Authorization: `Bearer ${token.accessToken}`
+                Authorization: `Bearer ${token?.accessToken}`
             }
         })
             .then(res => {
