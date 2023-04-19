@@ -1,16 +1,9 @@
-import { useEffect } from 'react';
 import { Navbar, Nav, NavDropdown, Container, Row, Col } from 'react-bootstrap';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { AiOutlineBell, AiOutlineSearch  } from 'react-icons/ai';
+import { AiOutlineBell, AiOutlineSearch } from 'react-icons/ai';
 
-const DefaultLayout = ({ isLoggedIn }) => {
+const DefaultLayout = () => {
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!isLoggedIn) {
-            navigate('/login')
-        }
-    }, [isLoggedIn, navigate])
 
     const handleLogout = () => {
         localStorage.clear()
@@ -19,10 +12,10 @@ const DefaultLayout = ({ isLoggedIn }) => {
 
     return (
         <>
-            <Navbar bg="dark" variant="dark" expand="md">
+            <Navbar bg="dark" variant="dark" expand="md" sticky='top'>
                 <Container fluid>
                     <Navbar.Brand>
-                        <Link to="/">Smart Aviation</Link>
+                        <Link to="/search">Smart Aviation</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -33,7 +26,7 @@ const DefaultLayout = ({ isLoggedIn }) => {
                                 menuVariant="dark"
                                 id="basic-nav-dropdown"
                             >
-                                <NavDropdown.Item href="#">Profile</NavDropdown.Item>
+                                <NavDropdown.Item href="profile">Profile</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                             </NavDropdown>
@@ -46,12 +39,14 @@ const DefaultLayout = ({ isLoggedIn }) => {
                 <Row>
                     <Col md={2} className="bg-light sidebar">
                         <Nav className="flex-column mt-3 sidebar-nav">
-                            <Link to="/" className="text-black p-2"><AiOutlineSearch className='mb-1'/> Search Flights</Link>
-                            <Link to="/saved" className="text-black p-2"><AiOutlineBell className='mb-1'/> Saved Flights</Link>
+                            <Link to="/search" className="text-black p-2" style={{ backgroundColor: window.location.pathname.includes('search') ? 'lightgrey' : '' }}><AiOutlineSearch className='mb-1' /> Search Flights</Link>
+                            <Link to="/saved" className="text-black p-2" style={{ backgroundColor: window.location.pathname.includes('saved') ? 'lightgrey' : '' }}><AiOutlineBell className='mb-1' /> Saved Flights</Link>
                         </Nav>
                     </Col>
                     <Col md={10}>
-                        <Outlet />
+                        <div className='m-3'>
+                            <Outlet />
+                        </div>
                     </Col>
                 </Row>
             </Container>

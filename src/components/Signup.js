@@ -10,6 +10,7 @@ function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const handleSubmit = (e) => {
@@ -19,10 +20,15 @@ function Signup() {
                 name,
                 email,
                 password,
-                username
+                username,
+                userProfile: {
+                    phoneNumber: phoneNumber,
+                    smsToggle: true,
+                    emailToggle: true
+                }
             })
                 .then(res => {
-                    if(res?.data?.success){
+                    if (res?.data?.success) {
                         navigate('/login')
                     }
                 })
@@ -73,6 +79,19 @@ function Signup() {
                             placeholder="Enter username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </div>
+
+                    <div className="mb-3">
+                        <label htmlFor="number" className="form-label">Phone number</label>
+                        <input
+                            required
+                            type="number"
+                            className="form-control"
+                            id="phoneNumber"
+                            placeholder="Enter mobile number"
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
                         />
                     </div>
 
