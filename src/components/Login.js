@@ -35,6 +35,7 @@ function Login({ onLogin }) {
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email address or Username</label>
                         <input
+                            required
                             type="text"
                             className="form-control"
                             id="email"
@@ -47,6 +48,7 @@ function Login({ onLogin }) {
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
                         <input
+                            required
                             type="password"
                             className="form-control"
                             id="password"

@@ -43,6 +43,18 @@ const Home = () => {
             .catch(err => console.error(err))
     };
 
+    const convertDate = (dateTimeString) => {
+        const dateTime = new Date(dateTimeString);
+
+        const year = dateTime.getFullYear();
+        const month = dateTime.getMonth() + 1;
+        const day = dateTime.getDate();
+        const hours = dateTime.getHours();
+        const minutes = dateTime.getMinutes();
+
+        return `${month}/${day}/${year} ${hours}:${minutes}`;
+    }
+
     return (
         <>
             <div className="card m-5">
@@ -107,7 +119,7 @@ const Home = () => {
                                     <h6 className="card-subtitle mb-2 text-muted">
                                         {flight.originName} - {flight.destinationName}
                                     </h6>
-                                    <p className="card-text">{flight.departureDateTime.slice(0, 3).join('-')}</p>
+                                    <p className="card-text">{convertDate(flight.departureDateTime)} &nbsp; <span class="badge bg-secondary">${flight.price}</span></p>
                                     <div className="form-check">
                                         <input className="form-check-input" type="checkbox" value="" id={`${index}`} />
                                         <label className="form-check-label" htmlFor={`${index}`}>

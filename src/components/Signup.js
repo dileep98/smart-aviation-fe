@@ -61,6 +61,7 @@ function Signup() {
                         <input
                             required
                             type="email"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                             className="form-control"
                             id="email"
                             placeholder="Enter email"
@@ -86,7 +87,7 @@ function Signup() {
                         <label htmlFor="number" className="form-label">Phone number</label>
                         <input
                             required
-                            type="number"
+                            type="tel"
                             className="form-control"
                             id="phoneNumber"
                             placeholder="Enter mobile number"
