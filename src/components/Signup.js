@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import { API_URL } from '../config';
+import Loader from '../Utils/Loader';
+import notify from '../Utils/Toast';
 
 function Signup() {
     const navigate = useNavigate();
@@ -12,9 +14,11 @@ function Signup() {
     const [username, setUsername] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true)
         if (password === confirmPassword) {
             axios.post(`${API_URL}/auth/signup`, {
                 name,
@@ -29,10 +33,17 @@ function Signup() {
             })
                 .then(res => {
                     if (res?.data?.success) {
+                        notify('Signed up successfully', 's')
                         navigate('/login')
                     }
                 })
-                .catch(err => console.error(err))
+                .catch(err => {
+                    notify(err?.message, 'e')
+                    console.error(err)
+                })
+                .finally(() => setLoading(false))
+        } else {
+            setLoading(false)
         }
     };
 
@@ -49,6 +60,8 @@ function Signup() {
                             required
                             type="text"
                             className="form-control"
+                            minLength={4}
+                            maxLength={40}
                             id="Name"
                             placeholder="Enter Name"
                             value={name}
@@ -64,6 +77,7 @@ function Signup() {
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                             className="form-control"
                             id="email"
+                            maxLength={40}
                             placeholder="Enter email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -76,10 +90,13 @@ function Signup() {
                             required
                             type="text"
                             className="form-control"
+                            minLength={3}
+                            maxLength={15}
                             id="username"
                             placeholder="Enter username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            autoComplete="username"
                         />
                     </div>
 
@@ -90,6 +107,7 @@ function Signup() {
                             type="tel"
                             className="form-control"
                             id="phoneNumber"
+                            max={15}
                             placeholder="Enter mobile number"
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
@@ -103,9 +121,12 @@ function Signup() {
                             type="password"
                             className="form-control"
                             id="password"
+                            minLength={6}
+                            maxLength={20}
                             placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            autoComplete="new-password"
                         />
                     </div>
 
@@ -116,13 +137,16 @@ function Signup() {
                             type="password"
                             className="form-control"
                             id="confirmPassword"
+                            minLength={6}
+                            maxLength={20}
                             placeholder="Confirm password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
+                            autoComplete="new-password"
                         />
                     </div>
 
-                    <button type="submit" className="btn btn-primary">Sign up</button>
+                    <button type="submit" className="btn btn-primary col-lg-3 col-md-3 col-sm-3">{loading ? <Loader /> : 'Sign up'}</button>
                 </form>
                 <p className="text-center mt-3">
                     Already have an account? <Link to="/login">Log In</Link>

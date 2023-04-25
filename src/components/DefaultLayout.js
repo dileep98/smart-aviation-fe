@@ -1,6 +1,7 @@
 import { Navbar, Nav, NavDropdown, Container, Row, Col } from 'react-bootstrap';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { AiOutlineBell, AiOutlineSearch } from 'react-icons/ai';
+import notify from '../Utils/Toast';
 
 const DefaultLayout = () => {
     const navigate = useNavigate();
@@ -8,6 +9,7 @@ const DefaultLayout = () => {
     const handleLogout = () => {
         localStorage.clear()
         navigate('/login')
+        notify('Logged out', 's')
     }
 
     return (
@@ -26,9 +28,9 @@ const DefaultLayout = () => {
                                 menuVariant="dark"
                                 id="basic-nav-dropdown"
                             >
-                                <NavDropdown.Item href="profile">Profile</NavDropdown.Item>
+                                <Link to="profile" className='dropdown-item'>Profile</Link>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+                                <Link to="/login" onClick={handleLogout} className='dropdown-item'>Logout</Link>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>

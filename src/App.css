@@ -23,3 +23,17 @@
   background-color: #c2c2c2;
   border-radius: 3px;
 }
+
+.spin {
+  animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
