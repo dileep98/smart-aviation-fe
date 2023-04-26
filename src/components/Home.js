@@ -15,13 +15,31 @@ const Home = () => {
     const [destination, setDestination] = useState("");
     const [departureDate, setDepartureDate] = useState("");
     const [isLoading, setIsLoading] = useState(false)
+    const [Options, setOptions] = useState([])
 
     const handleOriginChange = (event) => {
         setOrigin(event.target.value);
+
+        axios.get(`${API_URL}/airports/${event.target.value}`, {
+            headers: {
+                Authorization: `Bearer ${token?.accessToken}`
+            }
+        }).then(({ data }) => {
+            setOptions(data)
+        })
+
     };
 
     const handleDestinationChange = (event) => {
         setDestination(event.target.value);
+
+        axios.get(`${API_URL}/airports/${event.target.value}`, {
+            headers: {
+                Authorization: `Bearer ${token?.accessToken}`
+            }
+        }).then(({ data }) => {
+            setOptions(data)
+        })
     };
 
     const handleDepartureDateChange = (event) => {
@@ -101,8 +119,14 @@ const Home = () => {
                                     id="origin"
                                     placeholder="Enter origin"
                                     value={origin}
+                                    list='data'
                                     onChange={handleOriginChange}
                                 />
+                                <datalist id="data">
+                                    {Options.map((item, key) =>
+                                        <option key={key} value={`${item.code}`}>{item.name}</option>
+                                    )}
+                                </datalist>
                             </div>
                             <div className="col-4 mb-3">
                                 <label htmlFor="destination" className="form-label">
@@ -114,8 +138,14 @@ const Home = () => {
                                     id="destination"
                                     placeholder="Enter destination"
                                     value={destination}
+                                    list='data'
                                     onChange={handleDestinationChange}
                                 />
+                                <datalist id="data">
+                                    {Options.map((item, key) =>
+                                        <option key={key} value={`${item.code}`}>{item.name}</option>
+                                    )}
+                                </datalist>
                             </div>
                             <div className="col-4 mb-3">
                                 <label htmlFor="departureDate" className="form-label">
