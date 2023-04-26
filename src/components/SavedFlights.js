@@ -148,7 +148,7 @@ const SavedFlights = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    axios.get(`${API_URL}/flights/user/${user.id}`, {
+    axios.get(`${API_URL}/user-flight-pref/me`, {
       headers: {
         Authorization: `Bearer ${token?.accessToken}`
       }
