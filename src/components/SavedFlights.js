@@ -78,8 +78,8 @@ const SavedFlights = () => {
     let flight = SavedFlights.find(i => i.id === editingFlight)
     axios.put(`${API_URL}/flights/update`, {
       "id": editingFlight,
-      "departureDateTime": flight.departureDateTime,
-      "arrivalDateTime": flight.arrivalDateTime
+      "departureDateTime": `${flight.departureDateTime}:00`,
+      "arrivalDateTime": `${flight.arrivalDateTime}:00`
     }, {
       headers: {
         Authorization: `Bearer ${token?.accessToken}`
