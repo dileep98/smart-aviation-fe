@@ -12,139 +12,7 @@ const SavedFlights = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [editingFlight, setEditingFlight] = useState('')
-  const [SavedFlights, setSavedFlights] = useState(
-    [
-      {
-        "id": "14385-2307131200--32090-0-9828-2307131305",
-        "originName": "Munich",
-        "originCode": "MUC",
-        "destinationName": "Berlin Brandenburg",
-        "destinationCode": "BER",
-        "stopCount": 0,
-        "departureDateTime": '2023-07-13T12:25:00',
-        "arrivalDateTime": '2023-07-13T17:10:00',
-        "carrierName": "Lufthansa",
-        "price": 113.05,
-        "userId": null
-      },
-      {
-        "id": "14385-2307131400--32090-0-9828-2307131505",
-        "originName": "Munich",
-        "originCode": "MUC",
-        "destinationName": "Berlin Brandenburg",
-        "destinationCode": "BER",
-        "stopCount": 0,
-        "departureDateTime": '2023-07-13T12:25:00',
-        "arrivalDateTime": '2023-07-13T12:25:00',
-        "carrierName": "Lufthansa",
-        "price": 98.36,
-        "userId": null
-      },
-      {
-        "id": "14385-2307130900--32090-0-9828-2307131005",
-        "originName": "Munich",
-        "originCode": "MUC",
-        "destinationName": "Berlin Brandenburg",
-        "destinationCode": "BER",
-        "stopCount": 0,
-        "departureDateTime": '2023-07-13T12:25:00',
-        "arrivalDateTime": '2023-07-13T12:25:00',
-        "carrierName": "Lufthansa",
-        "price": 102.88,
-        "userId": null
-      },
-      {
-        "id": "14385-2307132000--32090-0-9828-2307132105",
-        "originName": "Munich",
-        "originCode": "MUC",
-        "destinationName": "Berlin Brandenburg",
-        "destinationCode": "BER",
-        "stopCount": 0,
-        "departureDateTime": '2023-07-13T12:25:00',
-        "arrivalDateTime": '2023-07-13T12:25:00',
-        "carrierName": "Lufthansa",
-        "price": 120.97,
-        "userId": null
-      },
-      {
-        "id": "14385-2307132130--32090-0-9828-2307132235",
-        "originName": "Munich",
-        "originCode": "MUC",
-        "destinationName": "Berlin Brandenburg",
-        "destinationCode": "BER",
-        "stopCount": 0,
-        "departureDateTime": '2023-07-13T12:25:00',
-        "arrivalDateTime": '2023-07-13T12:25:00',
-        "carrierName": "Lufthansa",
-        "price": 113.05,
-        "userId": null
-      },
-      {
-        "id": "14385-2307130700--32090-0-9828-2307130805",
-        "originName": "Munich",
-        "originCode": "MUC",
-        "destinationName": "Berlin Brandenburg",
-        "destinationCode": "BER",
-        "stopCount": 0,
-        "departureDateTime": '2023-07-13T12:25:00',
-        "arrivalDateTime": '2023-07-13T12:25:00',
-        "carrierName": "Lufthansa",
-        "price": 98.36,
-        "userId": null
-      },
-      {
-        "id": "14385-2307131700--32090-0-9828-2307131805",
-        "originName": "Munich",
-        "originCode": "MUC",
-        "destinationName": "Berlin Brandenburg",
-        "destinationCode": "BER",
-        "stopCount": 0,
-        "departureDateTime": '2023-07-13T12:25:00',
-        "arrivalDateTime": '2023-07-13T12:25:00',
-        "carrierName": "Lufthansa",
-        "price": 183.15,
-        "userId": null
-      },
-      {
-        "id": "14385-2307130800--32090-0-9828-2307130905",
-        "originName": "Munich",
-        "originCode": "MUC",
-        "destinationName": "Berlin Brandenburg",
-        "destinationCode": "BER",
-        "stopCount": 0,
-        "departureDateTime": '2023-07-13T12:25:00',
-        "arrivalDateTime": '2023-07-13T12:25:00',
-        "carrierName": "Lufthansa",
-        "price": 98.36,
-        "userId": null
-      },
-      {
-        "id": "14385-2307131045--32090-0-9828-2307131150",
-        "originName": "Munich",
-        "originCode": "MUC",
-        "destinationName": "Berlin Brandenburg",
-        "destinationCode": "BER",
-        "stopCount": 0,
-        "departureDateTime": '2023-07-13T12:25:00',
-        "arrivalDateTime": '2023-07-13T12:25:00',
-        "carrierName": "Lufthansa",
-        "price": 98.36,
-        "userId": null
-      },
-      {
-        "id": "14385-2307131800--32090-0-9828-2307131905",
-        "originName": "Munich",
-        "originCode": "MUC",
-        "destinationName": "Berlin Brandenburg",
-        "destinationCode": "BER",
-        "stopCount": 0,
-        "departureDateTime": '2023-07-13T12:25:00',
-        "arrivalDateTime": '2023-07-13T12:25:00',
-        "carrierName": "Lufthansa",
-        "price": 131.14,
-        "userId": null
-      }
-    ])
+  const [SavedFlights, setSavedFlights] = useState([])
 
   useEffect(() => {
     setIsLoading(true)
@@ -182,7 +50,7 @@ const SavedFlights = () => {
   }
 
   const SaveHandler = () => {
-    let flight = SavedFlights.find(i => i.id === editingFlight)
+    let flight = SavedFlights.find(i => i.flight.id === editingFlight)
     axios.post(`${API_URL}/flights/update`, {
       "id": editingFlight,
       "departureDateTime": flight.departureDateTime,
@@ -209,8 +77,8 @@ const SavedFlights = () => {
     switch (action) {
       case 'departure':
         d.map(i => {
-          if (i.id === editingFlight) {
-            i.departureDateTime = value
+          if (i.flight.id === editingFlight) {
+            i.flight.departureDateTime = value
           }
           return i
         })
@@ -218,8 +86,8 @@ const SavedFlights = () => {
         break;
       case 'arrival':
         d.map(i => {
-          if (i.id === editingFlight) {
-            i.arrivalDateTime = value
+          if (i.flight.id === editingFlight) {
+            i.flight.arrivalDateTime = value
           }
           return i
         })
@@ -238,7 +106,7 @@ const SavedFlights = () => {
           ? <div className="container">
             <h5 className="mt-4 mb-4">Saved Flights</h5>
             <div className="row row-cols-1 row-cols-12 g-4">
-              {SavedFlights.map((flight) => (
+              {SavedFlights.map(({ flight }) => (
                 <div className="col" key={flight.id}>
                   <div className="card">
                     <div className="card-body">
