@@ -76,7 +76,7 @@ const SavedFlights = () => {
 
   const SaveHandler = () => {
     let flight = SavedFlights.find(i => i.id === editingFlight)
-    axios.post(`${API_URL}/flights/update`, {
+    axios.put(`${API_URL}/flights/update`, {
       "id": editingFlight,
       "departureDateTime": flight.departureDateTime,
       "arrivalDateTime": flight.arrivalDateTime
