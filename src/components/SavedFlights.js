@@ -8,9 +8,10 @@ import notify from '../Utils/Toast';
 
 const SavedFlights = () => {
 
-  const { user, token } = useContext(AppContext);
+  const { user, token, decodedToken } = useContext(AppContext);
 
   const [isLoading, setIsLoading] = useState(false)
+  const [editingFlight, setEditingFlight] = useState('')
   const [SavedFlights, setSavedFlights] = useState(
     [
       {
@@ -20,20 +21,8 @@ const SavedFlights = () => {
         "destinationName": "Berlin Brandenburg",
         "destinationCode": "BER",
         "stopCount": 0,
-        "departureDateTime": [
-          2023,
-          7,
-          13,
-          12,
-          0
-        ],
-        "arrivalDateTime": [
-          2023,
-          7,
-          13,
-          13,
-          5
-        ],
+        "departureDateTime": '2023-07-13T12:25:00',
+        "arrivalDateTime": '2023-07-13T17:10:00',
         "carrierName": "Lufthansa",
         "price": 113.05,
         "userId": null
@@ -45,20 +34,8 @@ const SavedFlights = () => {
         "destinationName": "Berlin Brandenburg",
         "destinationCode": "BER",
         "stopCount": 0,
-        "departureDateTime": [
-          2023,
-          7,
-          13,
-          14,
-          0
-        ],
-        "arrivalDateTime": [
-          2023,
-          7,
-          13,
-          15,
-          5
-        ],
+        "departureDateTime": '2023-07-13T12:25:00',
+        "arrivalDateTime": '2023-07-13T12:25:00',
         "carrierName": "Lufthansa",
         "price": 98.36,
         "userId": null
@@ -70,20 +47,8 @@ const SavedFlights = () => {
         "destinationName": "Berlin Brandenburg",
         "destinationCode": "BER",
         "stopCount": 0,
-        "departureDateTime": [
-          2023,
-          7,
-          13,
-          9,
-          0
-        ],
-        "arrivalDateTime": [
-          2023,
-          7,
-          13,
-          10,
-          5
-        ],
+        "departureDateTime": '2023-07-13T12:25:00',
+        "arrivalDateTime": '2023-07-13T12:25:00',
         "carrierName": "Lufthansa",
         "price": 102.88,
         "userId": null
@@ -95,20 +60,8 @@ const SavedFlights = () => {
         "destinationName": "Berlin Brandenburg",
         "destinationCode": "BER",
         "stopCount": 0,
-        "departureDateTime": [
-          2023,
-          7,
-          13,
-          20,
-          0
-        ],
-        "arrivalDateTime": [
-          2023,
-          7,
-          13,
-          21,
-          5
-        ],
+        "departureDateTime": '2023-07-13T12:25:00',
+        "arrivalDateTime": '2023-07-13T12:25:00',
         "carrierName": "Lufthansa",
         "price": 120.97,
         "userId": null
@@ -120,20 +73,8 @@ const SavedFlights = () => {
         "destinationName": "Berlin Brandenburg",
         "destinationCode": "BER",
         "stopCount": 0,
-        "departureDateTime": [
-          2023,
-          7,
-          13,
-          21,
-          30
-        ],
-        "arrivalDateTime": [
-          2023,
-          7,
-          13,
-          22,
-          35
-        ],
+        "departureDateTime": '2023-07-13T12:25:00',
+        "arrivalDateTime": '2023-07-13T12:25:00',
         "carrierName": "Lufthansa",
         "price": 113.05,
         "userId": null
@@ -145,20 +86,8 @@ const SavedFlights = () => {
         "destinationName": "Berlin Brandenburg",
         "destinationCode": "BER",
         "stopCount": 0,
-        "departureDateTime": [
-          2023,
-          7,
-          13,
-          7,
-          0
-        ],
-        "arrivalDateTime": [
-          2023,
-          7,
-          13,
-          8,
-          5
-        ],
+        "departureDateTime": '2023-07-13T12:25:00',
+        "arrivalDateTime": '2023-07-13T12:25:00',
         "carrierName": "Lufthansa",
         "price": 98.36,
         "userId": null
@@ -170,20 +99,8 @@ const SavedFlights = () => {
         "destinationName": "Berlin Brandenburg",
         "destinationCode": "BER",
         "stopCount": 0,
-        "departureDateTime": [
-          2023,
-          7,
-          13,
-          17,
-          0
-        ],
-        "arrivalDateTime": [
-          2023,
-          7,
-          13,
-          18,
-          5
-        ],
+        "departureDateTime": '2023-07-13T12:25:00',
+        "arrivalDateTime": '2023-07-13T12:25:00',
         "carrierName": "Lufthansa",
         "price": 183.15,
         "userId": null
@@ -195,20 +112,8 @@ const SavedFlights = () => {
         "destinationName": "Berlin Brandenburg",
         "destinationCode": "BER",
         "stopCount": 0,
-        "departureDateTime": [
-          2023,
-          7,
-          13,
-          8,
-          0
-        ],
-        "arrivalDateTime": [
-          2023,
-          7,
-          13,
-          9,
-          5
-        ],
+        "departureDateTime": '2023-07-13T12:25:00',
+        "arrivalDateTime": '2023-07-13T12:25:00',
         "carrierName": "Lufthansa",
         "price": 98.36,
         "userId": null
@@ -220,20 +125,8 @@ const SavedFlights = () => {
         "destinationName": "Berlin Brandenburg",
         "destinationCode": "BER",
         "stopCount": 0,
-        "departureDateTime": [
-          2023,
-          7,
-          13,
-          10,
-          45
-        ],
-        "arrivalDateTime": [
-          2023,
-          7,
-          13,
-          11,
-          50
-        ],
+        "departureDateTime": '2023-07-13T12:25:00',
+        "arrivalDateTime": '2023-07-13T12:25:00',
         "carrierName": "Lufthansa",
         "price": 98.36,
         "userId": null
@@ -245,20 +138,8 @@ const SavedFlights = () => {
         "destinationName": "Berlin Brandenburg",
         "destinationCode": "BER",
         "stopCount": 0,
-        "departureDateTime": [
-          2023,
-          7,
-          13,
-          18,
-          0
-        ],
-        "arrivalDateTime": [
-          2023,
-          7,
-          13,
-          19,
-          5
-        ],
+        "departureDateTime": '2023-07-13T12:25:00',
+        "arrivalDateTime": '2023-07-13T12:25:00',
         "carrierName": "Lufthansa",
         "price": 131.14,
         "userId": null
@@ -282,7 +163,7 @@ const SavedFlights = () => {
         console.error(err)
       })
       .finally(() => setIsLoading(false))
-  }, [])
+  }, [user.id, token?.accessToken])
 
   const convertDate = (dateTimeString) => {
     const dateTime = new Date(dateTimeString);
@@ -294,6 +175,59 @@ const SavedFlights = () => {
     const minutes = (dateTime.getMinutes() < 10 ? '0' : '') + dateTime.getMinutes()
 
     return `${month}/${day}/${year} ${hours}:${minutes}`;
+  }
+
+  const EditHandler = (id) => {
+    setEditingFlight(id)
+  }
+
+  const SaveHandler = () => {
+    let flight = SavedFlights.find(i => i.id === editingFlight)
+    axios.post(`${API_URL}/flights/update`, {
+      "id": editingFlight,
+      "departureDateTime": flight.departureDateTime,
+      "arrivalDateTime": flight.arrivalDateTime
+    }, {
+      headers: {
+        Authorization: `Bearer ${token?.accessToken}`
+      }
+    })
+      .then(res => {
+        if (res.status === 200) {
+          notify('Flight data saved successfully', 's')
+        }
+      })
+      .catch(err => {
+        notify(err?.message, 'e')
+        console.error(err)
+      })
+      .finally(() => setEditingFlight(''))
+  }
+
+  const updateDateTimeHandler = (value, action) => {
+    let d = [...SavedFlights]
+    switch (action) {
+      case 'departure':
+        d.map(i => {
+          if (i.id === editingFlight) {
+            i.departureDateTime = value
+          }
+          return i
+        })
+        setSavedFlights(d)
+        break;
+      case 'arrival':
+        d.map(i => {
+          if (i.id === editingFlight) {
+            i.arrivalDateTime = value
+          }
+          return i
+        })
+        setSavedFlights(d)
+        break;
+      default:
+        break;
+    }
   }
 
   return (
@@ -308,13 +242,70 @@ const SavedFlights = () => {
                 <div className="col" key={flight.id}>
                   <div className="card">
                     <div className="card-body">
-                      <h5 className="card-title">
-                        {flight.originCode} <AiOutlineRight className='pb-1 text-muted' /> {flight.destinationCode}
-                      </h5>
+                      <div className='d-flex justify-content-between'>
+                        <h5 className="card-title">
+                          {flight.originCode} <AiOutlineRight className='pb-1 text-muted' /> {flight.destinationCode}
+                        </h5>
+                        {decodedToken?.roles !== "ROLE_USER" && <>
+                          {editingFlight !== flight.id
+                            ? <button className='btn btn-warning btn-sm' onClick={() => EditHandler(flight.id)}>Edit</button>
+                            : <button className='btn btn-primary btn-sm' onClick={SaveHandler}>Save</button>
+                          }
+                        </>}
+                      </div>
                       <h6 className="card-subtitle mb-2 text-muted">
                         {flight.originName} - {flight.destinationName}
                       </h6>
-                      <p className="card-text">{convertDate(flight.departureDateTime)} &nbsp; <span className="badge bg-secondary">${flight.price}</span></p>
+                      {
+                        decodedToken?.roles === "ROLE_USER"
+                          ? <p className="card-text">
+                            {convertDate(flight.departureDateTime)} &nbsp;
+                            <span className="badge bg-secondary">
+                              ${flight.price}
+                            </span>
+                          </p>
+                          : <>
+                            {editingFlight === flight.id
+                              ? <div>
+                                <div className="col-4 mb-3">
+                                  <label htmlFor="departureDate" className="form-label">
+                                    Departure Date
+                                  </label>
+                                  <input
+                                    type="datetime-local"
+                                    className="form-control"
+                                    id="departureDate"
+                                    value={flight.departureDateTime}
+                                    onChange={({ target: { value } }) => updateDateTimeHandler(value, 'departure')}
+                                  />
+                                </div>
+                                <div className="col-4 mb-3">
+                                  <label htmlFor="arrivalDate" className="form-label">
+                                    Arrival Date
+                                  </label>
+                                  <input
+                                    type="datetime-local"
+                                    className="form-control"
+                                    id="arrivalDate"
+                                    value={flight.arrivalDateTime}
+                                    onChange={({ target: { value } }) => updateDateTimeHandler(value, 'arrival')}
+                                  />
+                                </div>
+                              </div>
+                              : <>
+                                <p className="card-text m-0">
+                                  Departure: {convertDate(flight.departureDateTime)}
+                                </p>
+                                <p className="card-text m-0">
+                                  Arrival: {convertDate(flight.arrivalDateTime)}
+                                </p>
+                              </>
+                            }
+                            <span className="badge bg-secondary">
+                              ${flight.price}
+                            </span>
+                          </>
+                      }
                     </div>
                   </div>
                 </div>
