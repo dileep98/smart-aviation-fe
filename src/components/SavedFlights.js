@@ -36,7 +36,7 @@ const SavedFlights = () => {
           .finally(() => setIsLoading(false))
         break;
       case 'ROLE_ADMIN':
-        axios.get(`${API_URL}/flights`, {
+        axios.get(`${API_URL}/user-flight-pref/flights`, {
           headers: {
             Authorization: `Bearer ${token?.accessToken}`
           }
